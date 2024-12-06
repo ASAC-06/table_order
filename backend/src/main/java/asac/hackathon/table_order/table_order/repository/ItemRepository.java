@@ -22,8 +22,8 @@ public interface ItemRepository extends JpaRepository<SellingItem, Long> {
             "selling.status, " +
             "selling.created_at, " +
             "selling.updated_at " +
-            "FROM selling_item selling , item_category category " +
-            "where selling.id = category.id " +
+            "FROM selling_item selling " +
+            "LEFT JOIN item_category category on selling.category_id = category.id " +
             "order by category.priority asc", nativeQuery = true)
     List<SellingItem> findAll();
 
