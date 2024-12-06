@@ -10,7 +10,7 @@ import java.util.List;
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class OrderRequestDto {
 
-    Integer tableName;
+    Integer tableNumber;
     List<OrderLineItemRequestDto> lineItemList;
 
 }
