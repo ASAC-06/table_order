@@ -1,6 +1,7 @@
 package asac.hackathon.table_order.table_order.controller;
 
 import asac.hackathon.table_order.table_order.controller.dto.ItemResponseDto;
+import asac.hackathon.table_order.table_order.controller.dto.SellingItemRequestDto;
 import asac.hackathon.table_order.table_order.controller.dto.SellingItemUpdateDto;
 import asac.hackathon.table_order.table_order.service.ItemService;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,13 @@ public class ItemController {
                 .status(HttpStatus.OK)
                 .body(items);
     }
+
     @PostMapping("")
-    public ResponseEntity<ItemResponseDto> save(@RequestBody SellingItemRequestDto request){
+    public ResponseEntity<ItemResponseDto> save(@RequestBody SellingItemRequestDto request) {
         ItemResponseDto sellingItem = itemService.save(request);
         return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(sellingItem);
+                .status(HttpStatus.OK)
+                .body(sellingItem);
     }
 
 
