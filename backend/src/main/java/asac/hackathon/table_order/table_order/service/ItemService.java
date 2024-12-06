@@ -52,7 +52,8 @@ public class ItemService {
 
         // id 로 정보를 받아옴.
         SellingItem sellingItem = itemRepository.findItemById(id);
-        ItemCategory category = categoryRepository.findByCategoryId(sellingItem.getItemCategory().getId());
+        ItemCategory category = categoryRepository.findByCategoryId(sellingItem.getItemCategory().getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "category not found"));
 
         // 만약 카테고리 밸류가 다르면? 카테코리도 값 업데이트 해 준다. 해당 카테고리 밸류 찾아서.
         if (!category.getName().equals(itemUpdateDto.getCategoryName())) {
