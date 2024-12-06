@@ -19,11 +19,19 @@ public class ItemController {
 
     @GetMapping("")
     public ResponseEntity<List<ItemResponseDto>> menus() {
-        List<ItemResponseDto> menus = itemService.findAll();
+        List<ItemResponseDto> items = itemService.findAll();
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(menus);
+                .body(items);
     }
+    @PostMapping("")
+    public ResponseEntity<ItemResponseDto> save(@RequestBody SellingItemRequestDto request){
+        ItemResponseDto sellingItem = itemService.save(request);
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(sellingItem);
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ItemResponseDto> updateItem(@PathVariable Long id, @RequestBody SellingItemUpdateDto itemUpdateDto) {
