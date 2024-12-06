@@ -32,8 +32,8 @@ public class SellingItem extends BaseEntity {
     @Lob
     String profilePath;
 
-    public static SellingItem from(ItemCategory category,String name, Integer price, ItemEntityEnum status,String description,String profilePath){
-        return new SellingItem(category,name,price,status,description,profilePath);
+    public static SellingItem from(ItemCategory category, String name, Integer price, ItemEntityEnum status, String description, String profilePath) {
+        return new SellingItem(category, name, price, status, description, profilePath);
     }
 
     public void updateForm(SellingItemUpdateDto sellingItemUpdateDto) {
@@ -41,7 +41,6 @@ public class SellingItem extends BaseEntity {
         this.name = sellingItemUpdateDto.getName();
         this.price = sellingItemUpdateDto.getPrice();
         this.entityEnumStatus = ItemEntityEnum.deserialize(sellingItemUpdateDto.getStatus());
-        this.profilePath = sellingItemUpdateDto.getProfilePath();
         this.description = sellingItemUpdateDto.getDescription();
         this.profilePath = sellingItemUpdateDto.getProfilePath();
     }
