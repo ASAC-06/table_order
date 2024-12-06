@@ -1,8 +1,7 @@
 package asac.hackathon.table_order.table_order.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
@@ -15,18 +14,9 @@ public class BaseEntity {
     Long id;
 
     @Column(updatable = false)
-    LocalDateTime createdAt;
+    LocalDateTime createdAt = LocalDateTime.now();
 
-    LocalDateTime updatedAt;
-
-
-
-    @PrePersist
-    public void prePersist() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
-        }
-    }
+    LocalDateTime updatedAt = LocalDateTime.now();
 
 
 }
