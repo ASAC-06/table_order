@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
+import { ItemType } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -17,8 +18,14 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+  name: z.string().min(2, {
+    message: "메뉴 이름은 2글자 이상이여야 합니다",
+  }),
+  price: z.number().min(0, {
+    message: "가격은 0원 이상이여야 합니다",
+  }),
+  description: z.string().min(5, {
+    message: "메뉴 설명은 6글자 이상이여야 합니다",
   }),
 })
 
@@ -26,7 +33,9 @@ export function ItemForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      name: "",
+      price: 0,
+      description: "",
     },
   })
 
@@ -39,7 +48,7 @@ export function ItemForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>

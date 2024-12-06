@@ -1,7 +1,6 @@
 import React from "react"
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AdminSidebar } from "@/components/admin/sidebar"
+import { AdminHeader } from "@/components/admin/header"
 
 export default function AdminLayout({
   children, // will be a page or nested layout
@@ -9,12 +8,9 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <SidebarProvider>
-      <AdminSidebar />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <>
+      <AdminHeader></AdminHeader>
+      <main className="m-12 pt-12">{children}</main>
+    </>
   )
 }
