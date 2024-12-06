@@ -14,9 +14,20 @@ public class BaseEntity {
     Long id;
 
     @Column(updatable = false)
-    LocalDateTime createdAt = LocalDateTime.now();
+    LocalDateTime createdAt;
 
-    LocalDateTime updatedAt = LocalDateTime.now();
+    LocalDateTime updatedAt;
+
+    @PostPersist
+    public void postPersist() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PostUpdate
+    public void postUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 
 
 }

@@ -1,9 +1,6 @@
 package asac.hackathon.table_order.table_order.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +22,10 @@ public class SellingItem extends BaseEntity {
 
     String name;
     Integer price;
-    String status;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    ItemEntityEnum entityEnumStatus;
     @Lob
     String description;
     @Lob
