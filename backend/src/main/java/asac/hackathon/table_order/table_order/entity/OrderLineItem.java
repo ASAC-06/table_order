@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
@@ -13,6 +14,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @ToString
 @Entity
+@Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class OrderLineItem extends BaseEntity {
 
@@ -27,6 +29,4 @@ public class OrderLineItem extends BaseEntity {
     String itemName;
     Integer itemPrice;
     Integer amount;
-
-
 }
