@@ -3,6 +3,7 @@ package asac.hackathon.table_order.table_order.entity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -11,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @ToString
 @Entity
+@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SellingItem extends BaseEntity {
 
@@ -20,6 +22,7 @@ public class SellingItem extends BaseEntity {
 
     String name;
     Integer price;
+
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     ItemEntityEnum entityEnumStatus;
