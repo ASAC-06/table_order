@@ -1,9 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useHash } from "react-use"
 
-import { useCategoriesStore } from "@/lib/store"
 import { categoryType } from "@/lib/types"
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 

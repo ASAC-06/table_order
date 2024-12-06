@@ -30,15 +30,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${doHyeon.className} antialiased`}>
-        <SidebarProvider defaultOpen={false}>
-          <AppSidebar />
-          <main>{children}</main>
-          <Toaster richColors position="bottom-center" />
-          <CartSheet></CartSheet>
-        </SidebarProvider>
-        <SiteFooter></SiteFooter>
-      </body>
+      <body className={`${doHyeon.className} antialiased`}>{children} </body>
     </html>
   )
 }
