@@ -1,5 +1,6 @@
 "use client"
 
+import { createOrder } from "@/lib/actions"
 import { useLineItemStore } from "@/lib/store"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -47,7 +48,15 @@ export function CartSheet() {
               </Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button className="h-16 px-10 py-6 text-xl">결제하기</Button>
+              <Button
+                className="h-16 px-10 py-6 text-xl"
+                onClick={async () => {
+                  const res = await createOrder(lineItems)
+                  console.log(res)
+                }}
+              >
+                결제하기
+              </Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>

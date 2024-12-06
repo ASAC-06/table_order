@@ -1,4 +1,4 @@
-import { categoryType, ItemType } from "@/lib/types"
+import { categoryType, ItemType, LineItemType } from "@/lib/types"
 
 export const API_URL = process.env.API_URL || "localhost:8080"
 
