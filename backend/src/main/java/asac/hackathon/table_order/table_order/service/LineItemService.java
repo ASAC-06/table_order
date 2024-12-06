@@ -21,7 +21,7 @@ public class LineItemService {
     private final ItemRepository itemRepository;
 
     @Transactional
-    public LineItemCalculateResultDto saveList(/*OrderResponseDto dto,*/ List<OrderLineItemRequestDto> requests) {
+    public LineItemCalculateResultDto saveList(OrderResponseDto dto, List<OrderLineItemRequestDto> requests) {
 
         int totalAmount = 0;
         int totalPrice = 0;

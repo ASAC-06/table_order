@@ -26,25 +26,19 @@ public class OrderController {
     private final LineItemService lineItemService;
 
     @PostMapping("")
-    public ResponseEntity<LineItemCalculateResultDto> OrderSave(@RequestBody OrderRequestDto request) {
+
+    public ResponseEntity<OrderResponseDto> OrderSave(@RequestBody OrderRequestDto request) {
 
         //최초 주문 생성
-        OrderResponseDto orders = orderService.orderCreate(request);
-        log.error(request.getTableNumber() + "");
-
-        for (OrderLineItemRequestDto dto : request.getLineItemList()){
-            log.error(dto.getItemName() + "-------------------");
-        }
-
-
+        OrderResponseDto orders = orderService.orderInitCreate(request);
 
         // 리스트 아이템 넣기
-        LineItemCalculateResultDto resultDto = lineItemService.saveList(/*orders,*/ request.getLineItemList());
+        LineItemCalculateResultDto resultDto = lineItemService.saveList(orders, request.getLineItemList());
 
         // 주문목록과 리스트 동기화
-//        orderService.synchronizeOrder(resultDto);
+        OrderResponseDto currentOrder = orderService.synchronizeOrder(orders, resultDto);
 
-        return ResponseEntity.status(HttpStatus.OK).body(resultDto);
+        return ResponseEntity.status(HttpStatus.OK).body(currentOrder);
     }
 
 }
