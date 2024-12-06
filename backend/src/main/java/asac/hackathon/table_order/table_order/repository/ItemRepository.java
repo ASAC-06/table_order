@@ -30,7 +30,7 @@ public interface ItemRepository extends JpaRepository<SellingItem, Long> {
     @Transactional
     SellingItem save(SellingItem sellingItem);
 
-
-
-
+    @Transactional
+    @Query(value = "SELECT selling from SellingItem selling where selling.id=:id")
+    SellingItem findItemById(Long id);
 }

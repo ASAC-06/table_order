@@ -1,21 +1,16 @@
 package asac.hackathon.table_order.table_order.controller;
 
 import asac.hackathon.table_order.table_order.controller.dto.ItemResponseDto;
-import asac.hackathon.table_order.table_order.controller.dto.SellingItemRequestDto;
-import asac.hackathon.table_order.table_order.entity.SellingItem;
+import asac.hackathon.table_order.table_order.controller.dto.SellingItemUpdateDto;
 import asac.hackathon.table_order.table_order.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/items")
 public class ItemController {
@@ -37,5 +32,12 @@ public class ItemController {
             .body(sellingItem);
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ItemResponseDto> updateItem(@PathVariable Long id, @RequestBody SellingItemUpdateDto itemUpdateDto) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(itemService.update(id, itemUpdateDto));
+    }
 
 }
