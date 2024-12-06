@@ -2,6 +2,7 @@ package asac.hackathon.table_order.table_order.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -16,16 +17,12 @@ public class BaseEntity {
     @Column(updatable = false)
     LocalDateTime createdAt;
 
+    @Setter
     LocalDateTime updatedAt;
 
     @PostPersist
     public void postPersist() {
         this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PostUpdate
-    public void postUpdate() {
         this.updatedAt = LocalDateTime.now();
     }
 
