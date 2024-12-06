@@ -1,5 +1,6 @@
 package asac.hackathon.table_order.table_order.service;
 
+import asac.hackathon.table_order.table_order.controller.dto.LineItemCalculateResultDto;
 import asac.hackathon.table_order.table_order.controller.dto.OrderRequestDto;
 import asac.hackathon.table_order.table_order.controller.dto.OrderResponseDto;
 import asac.hackathon.table_order.table_order.repository.OrderRepository;
@@ -12,7 +13,11 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public OrderResponseDto orderSave(OrderRequestDto request){
+    public OrderResponseDto orderCreate(OrderRequestDto request) {
+        return null;
+    }
+
+    public OrderResponseDto synchronizeOrder(LineItemCalculateResultDto resultDto) {
         return null;
     }
 

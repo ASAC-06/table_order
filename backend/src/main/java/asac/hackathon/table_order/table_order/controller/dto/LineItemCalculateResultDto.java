@@ -2,15 +2,15 @@ package asac.hackathon.table_order.table_order.controller.dto;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class OrderRequestDto {
+public class LineItemCalculateResultDto {
 
-    Integer tableName;
-    List<OrderLineItemRequestDto> lineItemList;
+    Integer amount;
+    Integer totalPrice;
 
 }
