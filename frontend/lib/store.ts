@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
-import { ItemType, LineItemType } from "@/lib/types"
+import { categoryType, ItemType, LineItemType } from "@/lib/types"
 
 interface itemDialogState {
   item: ItemType | undefined
@@ -14,6 +14,11 @@ interface lineItemState {
   setLineItem: (item: LineItemType) => void
   resetLineItems: () => void
   findLineItem: (id: number) => LineItemType
+}
+
+interface categoriesState {
+  categories: categoryType[]
+  setCategories: (categories: categoryType[]) => void
 }
 
 export const useItemDialogStore = create<itemDialogState>((set) => ({
@@ -63,3 +68,12 @@ export const useLineItemStore = create<lineItemState>()(
     { name: "lineItemStore" }
   )
 )
+
+export const useCategoriesStore = create<categoriesState>((set) => ({
+  categories: [],
+  setCategories: (categories) => {
+    set(() => ({
+      categories: [...categories],
+    }))
+  },
+}))

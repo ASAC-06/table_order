@@ -1,15 +1,13 @@
 import Image from "next/image"
 
-import { API_URL } from "@/lib/api"
+import { API_URL, getItems } from "@/lib/api"
 import { ItemType } from "@/lib/types"
 import { ItemCard } from "@/components/item/card"
 import { ItemDialog } from "@/components/item/dialog"
 import ItemGrid from "@/components/item/grid"
 
 export default async function Home() {
-  const items: ItemType[] = await fetch(`${API_URL}/items`).then((res) =>
-    res.json()
-  )
+  const items = await getItems()
 
   return (
     <div className="p-6">

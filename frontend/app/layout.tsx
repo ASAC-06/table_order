@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
-import localFont from "next/font/local"
 
 import "./globals.css"
 
 import { Do_Hyeon } from "next/font/google"
-import { cookies } from "next/headers"
 
+import { getCategories } from "@/lib/api"
+import { useCategoriesStore } from "@/lib/store"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { Toaster } from "@/components/ui/sonner"
 import { AppSidebar } from "@/components/app-sidebar"

@@ -20,7 +20,7 @@ export function CartSheet() {
   const side = "right"
   return (
     <div className="grid grid-cols-2 gap-2">
-      <Sheet key={side} defaultOpen={true}>
+      <Sheet key={side}>
         <SheetTrigger asChild>
           <Button
             className="h- fixed bottom-10 right-10 h-16 px-10 py-6 text-xl"

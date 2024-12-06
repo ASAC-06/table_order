@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic"
 
+import { API_URL, getCategories } from "@/lib/api"
+import { ItemType } from "@/lib/types"
 import { Label } from "@/components/ui/label"
 import {
   Sidebar,
@@ -12,21 +14,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import CategoryList from "@/components/category/category-list"
 
-const categories = ["메인메뉴", "파스타", "피자", "음료", "주류"].map(
-  (item) => ({
-    title: item,
-    url: `#${item}`,
-  })
-)
-const CategoryList = dynamic(
-  () => import("../components/category/category-list"),
-  {
-    ssr: false,
-  }
-)
+export async function AppSidebar() {
+  const categories = await getCategories()
 
-export function AppSidebar() {
   return (
     <Sidebar collapsible="none" className="sticky top-0 h-svh border-r lg:flex">
       <SidebarHeader>

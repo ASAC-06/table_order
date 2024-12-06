@@ -21,3 +21,8 @@ export interface ItemType {
 export interface LineItemType extends ItemType {
   amount: number
 }
+
+export interface categoryType {
+  category_name: string
+  category_priority: number
+}

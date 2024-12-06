@@ -1,27 +1,40 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { useHash } from "react-use"
 
+import { useCategoriesStore } from "@/lib/store"
+import { categoryType } from "@/lib/types"
 import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 
-export default function CategoryList({ categories }) {
-  let current = ""
-  if (typeof window !== "undefined") {
-    const [hash, _] = useHash()
-    current = decodeURI(hash)
-  }
+export default function CategoryList({
+  categories,
+}: {
+  categories: categoryType[]
+}) {
+  const [current, setCurrent] = useState("")
+
+  useEffect(() => {
+    const handleUrlChange = () => {
+      setCurrent(decodeURI(window.location.hash))
+    }
+
+    handleUrlChange()
+    window.addEventListener("hashchange", handleUrlChange)
+    return () => window.removeEventListener("hashchange", handleUrlChange)
+  }, [current])
 
   return (
     <>
-      {categories.map(({ title, url }) => (
-        <SidebarMenuItem className="" key={title}>
+      {categories.map(({ category_name, category_priority }) => (
+        <SidebarMenuItem className="" key={category_priority}>
           <SidebarMenuButton
             className="h-16 p-6"
             asChild
-            isActive={`#${title}` === current}
+            isActive={`#${category_name}` === current}
           >
-            <a href={url}>
-              <span>{title}</span>
+            <a href={`#${category_name}`}>
+              <span>{category_name}</span>
             </a>
           </SidebarMenuButton>
         </SidebarMenuItem>
