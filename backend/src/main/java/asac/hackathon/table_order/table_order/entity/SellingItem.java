@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @Entity
 @Getter
+@Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SellingItem extends BaseEntity {
 
@@ -26,5 +27,9 @@ public class SellingItem extends BaseEntity {
     String description;
     @Lob
     String profilePath;
+
+    public static SellingItem from(ItemCategory category,String name, Integer price, ItemEntityEnum status,String description,String profilePath){
+        return new SellingItem(category,name,price,status,description,profilePath);
+    }
 
 }
