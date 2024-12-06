@@ -1,11 +1,7 @@
 package asac.hackathon.table_order.table_order.entity;
 
 import jakarta.persistence.Entity;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @AllArgsConstructor
@@ -18,4 +14,5 @@ public class ItemCategory extends BaseEntity {
 
     String name;
     Integer priority;
+
 }
