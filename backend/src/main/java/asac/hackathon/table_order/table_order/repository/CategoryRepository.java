@@ -20,4 +20,7 @@ public interface CategoryRepository extends JpaRepository<ItemCategory, Long> {
     @Transactional
     List<ItemCategory> findAllByOrderByPriority();
 
+    @Transactional
+    ItemCategory save(ItemCategory itemCategory);
+
 }
