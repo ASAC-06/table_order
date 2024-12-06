@@ -7,17 +7,18 @@ import org.springframework.web.server.ResponseStatusException;
 
 @ToString
 @AllArgsConstructor
-public enum ItemEntityEnum {
-    A("판매중"),
-    D("판매 안함"),
-    SO("매진");
+public enum PaymentsStatus {
+
+    READY("결제 준비"),
+    COMPLETE("결제 완료"),
+    CANCEL("결제 취소");
 
     private final String statusText;
 
-    public static ItemEntityEnum deserialize(String type) {
-        for (ItemEntityEnum itemEntityEnum : ItemEntityEnum.values()) {
-            if (itemEntityEnum.name().equals(type.toUpperCase())) {
-                return itemEntityEnum;
+    public static PaymentsStatus deserialize(String type) {
+        for (PaymentsStatus paymentsStatus : PaymentsStatus.values()) {
+            if (paymentsStatus.name().equals(type.toUpperCase())) {
+                return paymentsStatus;
             }
         }
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "상품 상태가 잘못 됐습니다.");
