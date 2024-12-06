@@ -26,3 +26,11 @@ export interface categoryType {
   category_name: string
   category_priority: number
 }
+
+export interface OrderType {
+  order_number: string
+  payment_status: string
+  table_number: number
+  total_amount: number
+  total_price: number
+}

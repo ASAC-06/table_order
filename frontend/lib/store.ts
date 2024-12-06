@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
-import { categoryType, ItemType, LineItemType } from "@/lib/types"
+import { categoryType, ItemType, LineItemType, OrderType } from "@/lib/types"
 
 interface itemDialogState {
   item: ItemType | undefined
@@ -76,4 +76,16 @@ export const useCategoriesStore = create<categoriesState>((set) => ({
       categories: [...categories],
     }))
   },
+}))
+
+interface orderState {
+  order: OrderType | undefined
+  setOrder: (order: any) => void
+  removeOrder: () => void
+}
+
+export const useOrderStore = create<orderState>((set) => ({
+  order: undefined,
+  setOrder: (order) => set(() => ({ order })),
+  removeOrder: () => set({ order: undefined }),
 }))

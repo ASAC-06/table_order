@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic"
+import Link from "next/link"
 
 import { API_URL, getCategories } from "@/lib/api"
 import { ItemType } from "@/lib/types"
@@ -23,7 +24,7 @@ export async function AppSidebar() {
     <Sidebar collapsible="none" className="sticky top-0 h-svh border-r lg:flex">
       <SidebarHeader>
         <Label className="m-6 text-center text-2xl text-black">
-          테이블 오더
+          <Link href="/">테이블 오더</Link>
         </Label>
       </SidebarHeader>
       <SidebarContent>

@@ -1,7 +1,12 @@
 "use client"
 
+import { useState } from "react"
+import { router } from "next/client"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+
 import { createOrder } from "@/lib/actions"
-import { useLineItemStore } from "@/lib/store"
+import { useLineItemStore, useOrderStore } from "@/lib/store"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import {
@@ -17,6 +22,8 @@ import { LineItem } from "@/components/line-item"
 
 export function CartSheet() {
   const { lineItems } = useLineItemStore()
+  const { setOrder } = useOrderStore()
+  const router = useRouter()
 
   const side = "right"
   return (
@@ -52,7 +59,12 @@ export function CartSheet() {
                 className="h-16 px-10 py-6 text-xl"
                 onClick={async () => {
                   const res = await createOrder(lineItems)
-                  console.log(res)
+                  if (res) {
+                    setOrder(res)
+                    router.push("/order")
+                  } else {
+                    toast.error("주문을 생성할 수 없습니다.")
+                  }
                 }}
               >
                 결제하기
