@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<ItemCategory, Long> {
@@ -14,6 +15,9 @@ public interface CategoryRepository extends JpaRepository<ItemCategory, Long> {
 
     @Transactional
     @Query("SELECT c from ItemCategory c where c.id = :id")
-    ItemCategory findByCategoryId(Long id);
+    Optional<ItemCategory> findByCategoryId(Long id);
+
+    @Transactional
+    List<ItemCategory> findAllByOrderByPriority();
 
 }
