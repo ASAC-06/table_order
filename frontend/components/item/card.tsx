@@ -4,12 +4,13 @@ import Image from "next/image"
 
 import { useItemDialogStore } from "@/lib/store"
 import { ItemType } from "@/lib/types"
+import { commaizeNumber } from "@/lib/utils"
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 
 export function ItemCard(item: ItemType) {
   const { id, name, price } = item
-  const displayPrice = price
+  const displayPrice = commaizeNumber(price)
   const { setItem } = useItemDialogStore()
 
   return (

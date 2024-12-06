@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Minus, Plus } from "lucide-react"
 
 import { useItemDialogStore, useLineItemStore } from "@/lib/store"
+import { commaizeNumber } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -49,7 +50,7 @@ export function ItemDialog() {
           <DialogDescription>{item?.description}</DialogDescription>
         </DialogHeader>
         <div className="justify-items-center py-4">
-          <div className="items-center pb-6">
+          <div className="items-center">
             <Image
               src={item?.imageSrc || "https://placehold.co/400x400.png"}
               alt={item?.imageAlt || "sample image"}
@@ -59,6 +60,11 @@ export function ItemDialog() {
             ></Image>
           </div>
 
+          <div>
+            <Label className="text-2xl text-primary">
+              {commaizeNumber(item?.price || 0)}원
+            </Label>
+          </div>
           <div className="flex items-center justify-center space-x-6">
             <Button
               variant="outline"

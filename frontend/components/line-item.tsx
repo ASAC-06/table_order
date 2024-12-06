@@ -5,6 +5,7 @@ import { toast } from "sonner"
 
 import { useLineItemStore } from "@/lib/store"
 import { LineItemType } from "@/lib/types"
+import { commaizeNumber } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -45,7 +46,9 @@ export function LineItem({ id }: { id: number }) {
             {lineItem.name}
           </div>
           <div className="text-sm font-medium leading-none">
-            <div className="text-lg text-primary">{lineItem.price}원</div>
+            <div className="text-lg text-primary">
+              {commaizeNumber(lineItem.price)}원
+            </div>
             <div className="flex items-center justify-end space-x-6">
               <Button
                 variant="outline"

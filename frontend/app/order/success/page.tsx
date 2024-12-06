@@ -3,6 +3,8 @@
 import { useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 
+import { API_URL } from "@/lib/api"
+
 export default function SuccessPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -15,7 +17,7 @@ export default function SuccessPage() {
     }
 
     async function confirm() {
-      const response = await fetch("/confirm", {
+      const response = await fetch(`${API_URL}/confirm`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -24,9 +26,10 @@ export default function SuccessPage() {
       })
 
       const json = await response.json()
-
       if (!response.ok) {
-        router.push(`/fail?message=${json.message}&code=${json.code}`)
+        router.push(
+          `/fail?message=결제에 실패했습니다. 관리자에게 문의해주세요`
+        )
         return
       }
     }
