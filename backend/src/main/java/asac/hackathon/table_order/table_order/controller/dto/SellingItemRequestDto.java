@@ -18,5 +18,4 @@ public class SellingItemRequestDto {
     private String description;
     private String profilePath;
 
-
 }
