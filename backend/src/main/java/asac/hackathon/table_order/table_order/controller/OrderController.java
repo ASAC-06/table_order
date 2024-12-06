@@ -21,19 +21,19 @@ public class OrderController {
     private final OrderService orderService;
     private final LineItemService lineItemService;
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<OrderResponseDto> OrderSave(@RequestBody OrderRequestDto request) {
 
         //최초 주문 생성
-        OrderResponseDto orders = orderService.orderCreate(request);
+        OrderResponseDto orders = orderService.orderInitCreate(request);
 
         // 리스트 아이템 넣기
-        LineItemCalculateResultDto resultDto = lineItemService.saveList(request.getLineItemList());
+        LineItemCalculateResultDto resultDto = lineItemService.saveList(orders, request.getLineItemList());
 
         // 주문목록과 리스트 동기화
-        orderService.synchronizeOrder(resultDto);
+        OrderResponseDto currentOrder = orderService.synchronizeOrder(orders, resultDto);
 
-        return ResponseEntity.status(HttpStatus.OK).body(orders);
+        return ResponseEntity.status(HttpStatus.OK).body(currentOrder);
     }
 
 }
