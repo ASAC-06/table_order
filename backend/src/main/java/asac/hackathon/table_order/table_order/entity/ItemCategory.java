@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @ToString
 @Getter
+@Setter
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ItemCategory extends BaseEntity {

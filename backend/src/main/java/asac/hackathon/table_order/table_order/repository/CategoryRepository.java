@@ -16,4 +16,7 @@ public interface CategoryRepository extends JpaRepository<ItemCategory, Long> {
     @Query("SELECT c from ItemCategory c where c.id = :id")
     ItemCategory findByCategoryId(Long id);
 
+    @Transactional
+    ItemCategory save(ItemCategory itemCategory);
+
 }
