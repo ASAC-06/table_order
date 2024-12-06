@@ -6,6 +6,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -14,6 +15,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @ToString
 @Entity
+@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SellingItem extends BaseEntity {
 
@@ -22,7 +24,7 @@ public class SellingItem extends BaseEntity {
     ItemCategory itemCategory;
 
     String name;
-    Integer prise;
+    Integer price;
     String status;
     @Lob
     String description;

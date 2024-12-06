@@ -16,7 +16,7 @@ public interface ItemRepository extends JpaRepository<SellingItem, Long> {
             "selling.category_id as category_id, " +
             "category.name as category_name, " +
             "selling.name, " +
-            "selling.prise, " +
+            "selling.price, " +
             "selling.description, " +
             "selling.profile_path, " +
             "selling.status, " +
