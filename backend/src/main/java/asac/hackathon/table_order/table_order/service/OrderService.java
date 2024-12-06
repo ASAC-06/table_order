@@ -4,6 +4,7 @@ import asac.hackathon.table_order.table_order.controller.dto.LineItemCalculateRe
 import asac.hackathon.table_order.table_order.controller.dto.OrderRequestDto;
 import asac.hackathon.table_order.table_order.controller.dto.OrderResponseDto;
 import asac.hackathon.table_order.table_order.entity.Order;
+import asac.hackathon.table_order.table_order.entity.PaymentsStatus;
 import asac.hackathon.table_order.table_order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,20 @@ public class OrderService {
         Order order = orderRepository.findByOrderNumber(responseDto.getOrderNumber());
         order.orderAmountAndTotalPriceUpdate(resultDto);
         return OrderResponseDto.from(order);
+    }
+
+    @Transactional
+    public void OrderPaymentFail(Long id) {
+        Order order = orderRepository.findByOrderNumber(id);
+        order.setPaymentsStatus(PaymentsStatus.CANCEL);
+    }
+
+    @Transactional
+    public void OrderPaymentSuccess(Long id, String rowData) {
+        Order order = orderRepository.findByOrderNumber(id);
+        order.setPaymentsStatus(PaymentsStatus.COMPLETE);
+        order.setTosPaymentsRowData(rowData);
+
     }
 
 }
