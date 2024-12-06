@@ -26,7 +26,7 @@ public class OrderResponseDto {
                 order.getTableNumber(),
                 order.getTotalAmount(),
                 order.getTotalPrice(),
-                order.getPaymentsStatus().toString()
+                order.getPaymentsStatus().name()
         );
     }
 

@@ -1,14 +1,18 @@
 package asac.hackathon.table_order.table_order.controller;
 
+import asac.hackathon.table_order.table_order.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,9 +24,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Controller
+@RequiredArgsConstructor
 public class WidgetController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final OrderService orderService;
 
     @RequestMapping(value = "/confirm")
     public ResponseEntity<JSONObject> confirmPayment(@RequestBody String jsonBody) throws Exception {
@@ -73,6 +79,24 @@ public class WidgetController {
         Reader reader = new InputStreamReader(responseStream, StandardCharsets.UTF_8);
         JSONObject jsonObject = (JSONObject) parser.parse(reader);
 
+        String orderIdString = jsonObject.get("orderId").toString();
+        Integer tokenPosition = orderIdString.indexOf("_");
+        Long tableOrderId = Long.parseLong(orderIdString.substring(0, tokenPosition));
+
+        if (!isSuccess) {
+            // 실패처리
+            // 실패 하면 주문 테이블 거래 상테 값을 cancel 로 변환.
+            // 예외처리 하면 될 것 같다.
+            orderService.OrderPaymentFail(tableOrderId);
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "결제 실패");
+
+
+        } else {
+            // 성공처리
+            // 성공하면 주문 테이블 거래 상태 값 complete 로 변경.
+            // json string으로 해서 rowdata 컬럼에 저장 한다.
+            orderService.OrderPaymentSuccess(tableOrderId, jsonObject.toJSONString());
+        }
 
         responseStream.close();
 

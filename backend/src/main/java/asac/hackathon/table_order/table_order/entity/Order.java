@@ -26,9 +26,11 @@ public class Order extends BaseEntity {
 
     @Column(name = "payments_status")
     @Enumerated(EnumType.STRING)
+    @Setter
     PaymentsStatus paymentsStatus;
 
     @Lob
+    @Setter
     String tosPaymentsRowData;
 
     LocalDateTime paidAt;
